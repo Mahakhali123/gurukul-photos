@@ -93,7 +93,7 @@ function AlbumsContent() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search albums..."
-                className="w-full pl-10 pr-10 py-3 bg-white border border-[#d9d9dd] rounded-[8px] text-[14px] focus:outline-none focus:border-[#9b60aa]"
+                className="w-full pl-10 pr-10 py-3 bg-white border border-[#d9d9dd] rounded-[8px] text-[14px] focus:outline-none focus:border-[#CC0000] focus:ring-2 focus:ring-[#CC0000]/15"
               />
               {searchQuery && (
                 <button

@@ -4,21 +4,16 @@
 
 @layer base {
   :root {
-    /* Cohere 2026 tokens */
+    /* Gurukul classic red + white — no green surfaces */
     --cohere-primary: #17171c;
     --cohere-black: #000000;
     --cohere-ink: #212121;
-    --cohere-deep-green: #003c33;
-    --cohere-navy: #071829;
     --cohere-canvas: #ffffff;
     --cohere-stone: #eeece7;
-    --cohere-pale-green: #edfce9;
     --cohere-pale-blue: #f1f5ff;
     --cohere-hairline: #d9d9dd;
     --cohere-muted: #93939f;
     --cohere-slate: #75758a;
-    --cohere-action: #1863dc;
-    --cohere-coral: #ff7759;
     --gurukul-maroon: #cc0000;
     --gurukul-maroon-dark: #a00000;
   }
@@ -54,13 +49,13 @@
     text-transform: uppercase;
   }
 
-  /* Cohere primary pill CTA */
+  /* Cohere primary pill CTA — Gurukul classic red */
   .cohere-btn-primary {
-    background: #17171c;
+    background: #cc0000;
     color: #fff;
     border-radius: 32px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.5;
     padding: 12px 24px;
     display: inline-flex;
@@ -70,7 +65,7 @@
     transition: background 0.2s ease, transform 0.2s ease;
   }
   .cohere-btn-primary:hover {
-    background: #000;
+    background: #a00000;
   }
   .cohere-btn-maroon {
     background: #cc0000;
@@ -125,34 +120,17 @@
     border-radius: 8px;
     padding: 32px;
   }
-  .cohere-dark-band {
-    background: #003c33;
-    color: #fff;
-    border-radius: 22px;
-  }
   .cohere-dark-navy {
-    background: #071829;
+    background: #17171c;
     color: #fff;
   }
 }
 
-/* ---------- gurukul.org chrome ---------- */
-.gurukul-announcement {
-  background: #000;
-  color: #fff;
-  font-size: 12px;
-  min-height: 36px;
-}
-.gurukul-topbar {
-  background: #f8f9fa;
-  border-bottom: 1px solid #e9ecef;
-  font-size: 13px;
-}
+/* ---------- classic header chrome (red / white) ---------- */
 
-/* Main header — logo clipped flush to the margin like gurukul.org.
-   The container keeps right padding but zero left padding on desktop,
-   and the logo anchor pulls slightly negative so the mark touches the
-   margin edge. */
+/* Logo clipped flush to the left margin (classic header).
+   Container keeps right padding but zero left padding on desktop;
+   logo stays enlarged (52/64/88px tall). */
 .gurukul-header {
   background: #ffffff;
   border-bottom: 1px solid #d9d9dd;
@@ -181,24 +159,6 @@
 @media (min-width: 1024px) {
   .gurukul-logo-anchor {
     margin-left: -8px;
-  }
-}
-
-/* Logo clipped OVER the ribbon: on md+ screens the logo wears a white
-   plaque that hangs upward over the top utility ribbon (exact ribbon
-   height offset, so it sits flush with zero clipping in every state —
-   announcement open or dismissed). Enlarged well beyond the old 40px. */
-@media (min-width: 768px) {
-  .gurukul-logo-overlap {
-    position: relative;
-    z-index: 50;
-    margin-top: -36px;
-    background: #ffffff;
-    border: 1px solid #e9ecef;
-    border-top: none;
-    border-radius: 0 0 18px 18px;
-    padding: 12px 20px 12px;
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.13);
   }
 }
 .gurukul-logo-img {

@@ -54,7 +54,7 @@ export function GalleryFilterBar({
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search photos, videos, audios, events or albums..."
-            className="w-full pl-10 pr-10 py-3 bg-white border border-[#d9d9dd] rounded-[8px] text-[14px] text-[#212121] placeholder:text-[#93939f] focus:outline-none focus:border-[#9b60aa] focus:ring-2 focus:ring-[#4c6ee6]/20 transition"
+            className="w-full pl-10 pr-10 py-3 bg-white border border-[#d9d9dd] rounded-[8px] text-[14px] text-[#212121] placeholder:text-[#93939f] focus:outline-none focus:border-[#CC0000] focus:ring-2 focus:ring-[#CC0000]/15 transition"
           />
           {searchQuery && (
             <button
@@ -68,11 +68,11 @@ export function GalleryFilterBar({
 
         <div className="flex flex-wrap items-center gap-2">
           {onSelectMediaType && (
-            <div className="flex items-center bg-[#eeece7]/50 p-1 rounded-[30px] border border-[#d9d9dd] text-[12px] font-medium">
+            <div className="flex items-center bg-[#eeece7]/60 p-1 rounded-[30px] border border-[#d9d9dd] text-[12px] font-medium">
               <button
                 onClick={() => onSelectMediaType('all')}
                 className={`px-3 py-1.5 rounded-full transition ${
-                  mediaTypeFilter === 'all' ? 'bg-[#17171c] text-white' : 'text-[#616161] hover:text-[#17171c]'
+                  mediaTypeFilter === 'all' ? 'bg-[#CC0000] text-white' : 'text-[#616161] hover:text-[#17171c]'
                 }`}
               >
                 All
@@ -80,7 +80,7 @@ export function GalleryFilterBar({
               <button
                 onClick={() => onSelectMediaType('image')}
                 className={`flex items-center space-x-1 px-3 py-1.5 rounded-full transition ${
-                  mediaTypeFilter === 'image' ? 'bg-[#17171c] text-white' : 'text-[#616161] hover:text-[#17171c]'
+                  mediaTypeFilter === 'image' ? 'bg-[#CC0000] text-white' : 'text-[#616161] hover:text-[#17171c]'
                 }`}
               >
                 <ImageIcon className="w-3.5 h-3.5" />
@@ -89,7 +89,7 @@ export function GalleryFilterBar({
               <button
                 onClick={() => onSelectMediaType('video')}
                 className={`flex items-center space-x-1 px-3 py-1.5 rounded-full transition ${
-                  mediaTypeFilter === 'video' ? 'bg-[#17171c] text-white' : 'text-[#616161] hover:text-[#17171c]'
+                  mediaTypeFilter === 'video' ? 'bg-[#CC0000] text-white' : 'text-[#616161] hover:text-[#17171c]'
                 }`}
               >
                 <Video className="w-3.5 h-3.5" />
@@ -98,7 +98,7 @@ export function GalleryFilterBar({
               <button
                 onClick={() => onSelectMediaType('audio')}
                 className={`flex items-center space-x-1 px-3 py-1.5 rounded-full transition ${
-                  mediaTypeFilter === 'audio' ? 'bg-[#17171c] text-white' : 'text-[#616161] hover:text-[#17171c]'
+                  mediaTypeFilter === 'audio' ? 'bg-[#CC0000] text-white' : 'text-[#616161] hover:text-[#17171c]'
                 }`}
               >
                 <Music className="w-3.5 h-3.5" />
@@ -139,7 +139,7 @@ export function GalleryFilterBar({
           {hasActiveFilters && (
             <button
               onClick={onResetFilters}
-              className="flex items-center space-x-1 px-3 py-2.5 text-[12px] font-medium text-[#b30000] bg-[#ff7759]/10 hover:bg-[#ff7759]/20 rounded-[8px] transition"
+              className="flex items-center space-x-1 px-3 py-2.5 text-[12px] font-medium text-[#a00000] bg-[#CC0000]/10 hover:bg-[#CC0000]/20 rounded-[8px] transition"
             >
               <X className="w-3.5 h-3.5" />
               <span>Reset</span>

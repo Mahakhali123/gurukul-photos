@@ -57,7 +57,7 @@ export default async function HomePage() {
       </section>
 
       {/* ========== Feature tiles — Albums first, Photos second ========== */}
-      <section className="w-full bg-[#eeece7]/50 border-b border-[#d9d9dd] py-6 sm:py-8">
+      <section className="w-full bg-[#edf0f4] border-b border-[#d9d9dd] py-6 sm:py-8">
         <div className="max-w-[1140px] mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Tile 1 — Popular Albums */}
           <div className="rounded-[16px] bg-[#17171c] text-white overflow-hidden flex flex-col sm:min-h-[500px]">
@@ -84,7 +84,7 @@ export default async function HomePage() {
               <h3 className="text-[24px] text-[#212121]">Latest Photos.</h3>
               <p className="mt-1 text-[14px] text-[#616161]">Fresh moments from Gurukul.</p>
               <div className="mt-4 flex items-center justify-center gap-4 text-[13px]">
-                <Link href="/photos" className="rounded-[32px] bg-[#17171c] hover:bg-black transition text-white px-5 py-2 font-medium">
+                <Link href="/photos" className="rounded-[32px] bg-[#CC0000] hover:bg-[#a00000] transition text-white px-5 py-2 font-semibold">
                   View all {totalPhotos}
                 </Link>
                 <Link href="/photos" className="text-[#CC0000] hover:text-[#a00000] underline underline-offset-4 font-medium">
