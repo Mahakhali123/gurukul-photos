@@ -23,18 +23,6 @@ export function PhotoCard({ photo, index, onClick }: PhotoCardProps) {
   const isAudio = photo.mediaType === 'audio';
   const isImage = !isVideo && !isAudio;
 
-  // Pinterest-style natural heights: real photo ratios drive the masonry rhythm.
-  const rawRatio =
-    photo.aspectRatio && photo.aspectRatio > 0
-      ? photo.aspectRatio
-      : photo.width && photo.height
-        ? photo.width / photo.height
-        : undefined;
-  const imageRatio =
-    rawRatio && isFinite(rawRatio)
-      ? Math.min(1.9, Math.max(0.62, rawRatio))
-      : 4 / 3;
-
   const handleImgError = () => {
     if (fallbackStep === 0) {
       setFallbackStep(1);
@@ -64,17 +52,10 @@ export function PhotoCard({ photo, index, onClick }: PhotoCardProps) {
   return (
     <div
       onClick={() => onClick(index)}
-      className="group cursor-pointer break-inside-avoid mb-3 sm:mb-4 rounded-[16px] overflow-hidden bg-white border border-[#f2f2f2] hover:border-[#d9d9dd] hover:shadow-[0_16px_40px_rgba(0,0,0,0.14)] hover:-translate-y-1 transition-all duration-300"
+      className="group cursor-pointer rounded-[16px] overflow-hidden bg-white border border-[#f2f2f2] hover:border-[#d9d9dd] hover:shadow-[0_16px_40px_rgba(0,0,0,0.14)] hover:-translate-y-1 transition-all duration-300"
     >
       <div
-        className="relative w-full overflow-hidden bg-[#eeece7]"
-        style={
-          isImage
-            ? { aspectRatio: `${imageRatio}` }
-            : isVideo
-              ? { aspectRatio: '4 / 3' }
-              : { aspectRatio: '1 / 1' }
-        }
+        className="relative w-full overflow-hidden bg-[#eeece7] aspect-[4/3]"
       >
         {isAudio ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#17171c] text-white p-4 overflow-hidden">

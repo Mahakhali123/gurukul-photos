@@ -1,159 +1,127 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { getDriveData } from '@/lib/drive';
+import { PhotoGrid } from '@/components/gallery/PhotoGrid';
 import { AlbumGrid } from '@/components/albums/AlbumGrid';
-import { HomeMediaWall } from '@/components/gallery/HomeMediaWall';
 
-export const revalidate = 600;
-
-const BRANCHES = [
-  'Hyderabad', 'Bengaluru', 'Mumbai', 'Nagpur', 'Raipur', 'Delhi', 'Ahmedabad', 'Jadcherla',
-];
-
-const VALUES = [
-  { title: 'Vidya', sub: 'Modern education — dynamism, curiosity, leadership.' },
-  { title: 'Sadvidya', sub: 'Traditional character — gratitude, integrity, discipline.' },
-  { title: 'Brahmavidya', sub: 'Spiritual grounding — faith, devotion, self-realization.' },
-];
+export const revalidate = 600; // ISR: Vercel caches homepage HTML 10 min → instant loads
 
 export default async function HomePage() {
   const data = await getDriveData();
   const { photos, albums } = data;
 
   const totalPhotos = photos.length;
-  const totalVideos = photos.filter((p) => p.mediaType === 'video').length;
-  const totalAudios = photos.filter((p) => p.mediaType === 'audio').length;
   const totalAlbums = albums.length;
-  const featuredAlbums = albums.slice(0, 3);
-
-  const stats: { n: string; label: string }[] = [
-    { n: totalPhotos.toLocaleString('en-IN'), label: 'Photos' },
-    { n: String(totalVideos), label: 'Videos' },
-    { n: String(totalAudios), label: 'Audios' },
-    { n: String(totalAlbums), label: 'Albums' },
-  ];
+  const latestPhotos = photos.slice(0, 8);
+  const featuredAlbums = albums.slice(0, 4);
 
   return (
     <div className="bg-white">
-      {/* ---------- Compact hero — the media is the hero ---------- */}
-      <section className="w-full bg-white pt-10 sm:pt-14 pb-6 sm:pb-8">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 text-center">
-          <p className="cohere-mono-label text-[#93939f]">
-            Shree Swaminarayan Gurukul · Official events archive
+      {/* ========== Hero — G-Arts highlight event + option buttons ========== */}
+      <section className="w-full bg-white pt-10 sm:pt-14 pb-8 sm:pb-12 text-center border-b border-[#d9d9dd]">
+        <div className="max-w-[980px] mx-auto px-4 sm:px-6">
+          <p className="cohere-mono-label !text-[11px] sm:!text-[12px] text-[#CC0000]">
+            Shree Swaminarayan Gurukul · Official Events Archive
           </p>
-          <h1 className="cohere-display text-[44px] sm:text-[64px] lg:text-[88px] text-[#17171c] mt-3">
-            Gurukul, frame by frame.
+          <h1 className="cohere-display text-[44px] sm:text-[72px] text-[#17171c] mt-2">
+            G-Arts Gallery.
           </h1>
-          <p className="mt-4 text-[16px] sm:text-[18px] leading-[1.5] text-[#616161] max-w-2xl mx-auto">
-            Every Annual Day, Yatra, match and morning assembly — captured and
-            preserved by students, for students.
-          </p>
 
-          {/* Live archive stats — hairline-divided editorial row */}
-          <div className="mt-7 flex items-stretch justify-center divide-x divide-[#d9d9dd]">
-            {stats.map((s) => (
-              <div key={s.label} className="px-4 sm:px-8">
-                <p className="cohere-display text-[24px] sm:text-[36px] text-[#17171c]">{s.n}</p>
-                <p className="cohere-mono-label !text-[11px] text-[#CC0000] mt-1">{s.label}</p>
-              </div>
-            ))}
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
+            <Link
+              href="/photos"
+              className="cohere-btn-primary w-full sm:w-auto"
+            >
+              Explore Gallery
+            </Link>
+            <Link href="/events" className="cohere-btn-secondary">
+              View Events timeline &gt;
+            </Link>
           </div>
 
-          <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
-            <Link href="/photos" className="cohere-btn-primary w-full sm:w-auto">
-              Explore the gallery
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
-            <Link href="/albums" className="cohere-btn-secondary">
-              Browse albums
-            </Link>
+          {/* Hero figure — Main image (G-Arts editing studio highlight) */}
+          <div className="mt-8 sm:mt-10 relative">
+            <div className="mx-auto max-w-[980px] rounded-[22px] overflow-hidden bg-[#eeece7] border border-[#d9d9dd] aspect-[16/9] sm:aspect-[2.2/1] relative">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/hero-main.jpg"
+                alt="G-Arts Studio — Student editing Gurukul photos"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="mt-3 text-[12px] text-[#93939f] text-center">
+              Main image: G-Arts team editing • {totalPhotos} photos • {totalAlbums} albums
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ---------- THE WALL — photos, videos & audios first ---------- */}
-      <HomeMediaWall photos={photos} />
-
-      {/* ---------- Albums preview ---------- */}
-      <section className="bg-[#eeece7]/50 border-y border-[#d9d9dd]">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <div className="flex items-end justify-between gap-4 pb-5">
-            <div>
-              <p className="cohere-mono-label text-[#CC0000]">Curated collections</p>
-              <h2 className="cohere-display text-[32px] sm:text-[48px] text-[#17171c] mt-2">
-                Albums &amp; events.
-              </h2>
+      {/* ========== Feature tiles — Albums first, Photos second ========== */}
+      <section className="w-full bg-[#eeece7]/50 border-b border-[#d9d9dd] py-6 sm:py-8">
+        <div className="max-w-[1140px] mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Tile 1 — Popular Albums */}
+          <div className="rounded-[16px] bg-[#17171c] text-white overflow-hidden flex flex-col sm:min-h-[500px]">
+            <div className="pt-8 pb-5 text-center px-6 border-b border-white/10">
+              <h3 className="text-[24px]">Popular Albums.</h3>
+              <p className="mt-1 text-[14px] text-[#93939f]">Curated collections, updated daily.</p>
+              <div className="mt-4 flex items-center justify-center gap-4 text-[13px]">
+                <Link href="/albums" className="rounded-[32px] bg-[#CC0000] hover:bg-[#a00000] transition text-white px-5 py-2 font-semibold">
+                  View all {totalAlbums}
+                </Link>
+                <Link href="/albums" className="text-white/80 hover:text-white underline underline-offset-4">
+                  Browse &gt;
+                </Link>
+              </div>
             </div>
-            <Link href="/albums" className="hidden sm:inline-flex cohere-btn-secondary shrink-0">
-              View all {totalAlbums} <ArrowUpRight className="w-4 h-4 ml-1" />
+            <div className="flex-1 p-4">
+              <AlbumGrid albums={featuredAlbums} />
+            </div>
+          </div>
+
+          {/* Tile 2 — Latest Photos */}
+          <div className="rounded-[16px] bg-white border border-[#d9d9dd] overflow-hidden flex flex-col sm:min-h-[500px]">
+            <div className="pt-8 pb-5 text-center px-6 border-b border-[#d9d9dd]">
+              <h3 className="text-[24px] text-[#212121]">Latest Photos.</h3>
+              <p className="mt-1 text-[14px] text-[#616161]">Fresh moments from Gurukul.</p>
+              <div className="mt-4 flex items-center justify-center gap-4 text-[13px]">
+                <Link href="/photos" className="rounded-[32px] bg-[#17171c] hover:bg-black transition text-white px-5 py-2 font-medium">
+                  View all {totalPhotos}
+                </Link>
+                <Link href="/photos" className="text-[#CC0000] hover:text-[#a00000] underline underline-offset-4 font-medium">
+                  Learn more &gt;
+                </Link>
+              </div>
+            </div>
+            <div className="flex-1 p-4 bg-[#eeece7]/40">
+              <PhotoGrid photos={latestPhotos.slice(0, 4)} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== Albums first, Photos second ========== */}
+      <section className="max-w-[980px] mx-auto px-4 sm:px-6 py-10 sm:py-14 space-y-10 sm:space-y-12">
+        <div className="space-y-5">
+          <div className="flex items-end justify-between border-b border-[#d9d9dd] pb-3">
+            <h2 className="text-[24px] sm:text-[32px] text-[#212121]">Albums.</h2>
+            <Link href="/albums" className="text-[13px] sm:text-[14px] text-[#CC0000] hover:text-[#a00000] hover:underline font-medium">
+              View all albums ({totalAlbums}) &gt;
             </Link>
           </div>
           <AlbumGrid albums={featuredAlbums} />
-          <div className="mt-6 text-center sm:hidden">
-            <Link href="/albums" className="cohere-btn-secondary">
-              View all {totalAlbums} albums
+        </div>
+
+        <div className="space-y-5">
+          <div className="flex items-end justify-between border-b border-[#d9d9dd] pb-3">
+            <h2 className="text-[24px] sm:text-[32px] text-[#212121]">Latest Photos.</h2>
+            <Link href="/photos" className="text-[13px] sm:text-[14px] text-[#CC0000] hover:text-[#a00000] hover:underline font-medium">
+              View all photos ({totalPhotos}) &gt;
             </Link>
           </div>
+          <PhotoGrid photos={latestPhotos} />
         </div>
       </section>
 
-      {/* ---------- Slim value band — quiet supporting act ---------- */}
-      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <div className="rounded-[22px] bg-[#003c33] text-white px-7 py-9 sm:p-12">
-          <div className="flex flex-col lg:flex-row lg:items-center gap-8">
-            <div className="lg:max-w-xs shrink-0">
-              <p className="cohere-mono-label text-white/60">Why Gurukul</p>
-              <h2 className="cohere-display text-[28px] sm:text-[36px] mt-2">
-                Vidya. Sadvidya. Brahmavidya.
-              </h2>
-              <a
-                href="https://gurukul.org/why-swaminarayan-gurukul/"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-3 inline-flex items-center text-[14px] underline underline-offset-4 text-white/85 hover:text-white"
-              >
-                Read more <ArrowUpRight className="w-4 h-4 ml-1" />
-              </a>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 flex-1">
-              {VALUES.map((v) => (
-                <div key={v.title} className="rounded-[16px] border border-white/15 bg-black/20 p-5">
-                  <h3 className="text-[22px] leading-none">{v.title}</h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-white/70">{v.sub}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- Trust strip + CTA ---------- */}
-      <section className="border-t border-[#d9d9dd] bg-white">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-8 text-center">
-          <p className="text-[13px] text-[#616161]">Trusted across 20+ Gurukul campuses in India &amp; the USA</p>
-          <div className="trust-strip mt-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[11px] font-semibold uppercase text-[#93939f]">
-            {BRANCHES.map((b) => (
-              <span key={b}>{b}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
-        <div className="rounded-[22px] bg-[#f1f5ff] border border-[#d9d9dd] p-8 sm:p-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-          <div className="max-w-xl">
-            <p className="cohere-mono-label text-[#75758a]">For parents &amp; alumni</p>
-            <h2 className="cohere-display text-[28px] sm:text-[40px] text-[#17171c] mt-2">
-              Find your child&apos;s moment in seconds.
-            </h2>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
-            <Link href="/photos" className="cohere-btn-primary">Search photos</Link>
-            <a href="https://gurukul.org/admissions/" target="_blank" rel="noreferrer" className="cohere-btn-maroon">Apply online</a>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
