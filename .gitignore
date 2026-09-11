@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Debug / analysis artifacts (local only)
+curl_output.html
+analyze_drive*.js
+
+# TypeScript build info
+tsconfig.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# NOTE: .env.local intentionally ALLOWED per owner request (contains Drive folder ID).
+# Do NOT add .env*.local here.

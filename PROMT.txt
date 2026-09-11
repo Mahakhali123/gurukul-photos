@@ -1,0 +1,289 @@
+Create a modern, professional, responsive **Student Photography Gallery Website for G-Arts, Swaminarayan Gurukul**.
+
+### Main Purpose
+
+I work in the **G-Arts department of Swaminarayan Gurukul**, where I take photos of students during classes, activities, events, competitions, celebrations, and other programs.
+
+I want a website where visitors can view these student photos in a beautiful gallery.
+
+**IMPORTANT:** I do NOT want to upload photos manually to the website.
+
+All photos will be uploaded by me to this Google Drive folder:
+
+https://drive.google.com/drive/folders/1pjCwzDixq-erdAEKaV439aqrpLLxe7IU?usp=sharing
+https://drive.google.com/drive/folders/1pjCwzDixq-erdAEKaV439aqrpLLxe7IU?usp=sharing
+
+The website must automatically fetch and display photos from this Google Drive folder. When I add new photos to the Drive folder, they should automatically appear on the website without me uploading them again.
+
+### Website Name
+
+**G-Arts Student Photo Gallery**
+
+Subtitle:
+**Swaminarayan Gurukul**
+
+### Design
+
+Create a clean, premium, modern design inspired by an educational institution.
+
+Use:
+
+* White background
+* Saffron/orange as the primary accent color
+* Dark navy/blue for text
+* Subtle gold accents
+* Clean typography
+* Rounded cards
+* Smooth animations
+* Professional photography-focused layout
+* Fully responsive design for mobile, tablet, and desktop
+
+The website should look like an official institutional website, not like a basic photo-upload website.
+
+### Homepage
+
+Create a beautiful hero section with:
+
+**G-Arts Student Photo Gallery**
+
+"Capturing and preserving memorable moments of our students at Swaminarayan Gurukul."
+
+Add a prominent button:
+
+**Explore Photos →**
+
+Below the hero section, show:
+
+* Latest Photos
+* Recent Events
+* Popular Albums
+* Total Photos
+* Total Albums
+
+### Photo Gallery
+
+Create a gallery page that displays photos fetched from Google Drive.
+
+Features:
+
+* Masonry/grid photo layout
+* Lazy loading
+* Fast image loading
+* Hover animation
+* Photo preview
+* Full-screen lightbox
+* Next/Previous buttons
+* Download button
+* Share button
+* Responsive image sizes
+
+When a user clicks a photo, open it in a beautiful full-screen viewer.
+
+### Albums / Events
+
+Organize photos based on Google Drive folders.
+
+For example:
+
+* Annual Day
+* Sports Day
+* Cultural Programs
+* Student Activities
+* Competitions
+* Celebrations
+* Educational Activities
+* Class Activities
+* Other Events
+
+The website should automatically detect folders/albums from Google Drive whenever possible.
+
+Each album should show:
+
+* Cover photo
+* Album name
+* Number of photos
+* Date/event information
+* "View Album" button
+
+### Search
+
+Add a powerful search box:
+
+**Search photos, students, events or albums...**
+
+Allow users to search by:
+
+* Album
+* Event
+* Date
+* Photo filename
+
+### Filters
+
+Add filters such as:
+
+**All | Events | Activities | Competitions | Celebrations | Classes**
+
+Also provide a date filter.
+
+### Google Drive Integration
+
+Use the **Google Drive API** to retrieve photos from the specified Drive folder.
+
+Drive Folder ID:
+
+**1pjCwzDixq-erdAEKaV439aqrpLLxe7IU**
+
+Do NOT hard-code individual photo URLs.
+
+The application should dynamically request the files from Google Drive.
+
+Only display image files such as:
+
+* JPG
+* JPEG
+* PNG
+* WEBP
+
+Ignore:
+
+* Documents
+* PDFs
+* Videos
+* Other non-image files
+
+When I add a new image to the Google Drive folder, the website should automatically be able to retrieve it.
+
+### Important Security Requirement
+
+Do NOT put a private Google Drive API key or sensitive Google credentials directly into frontend JavaScript.
+
+Use a secure backend/server-side API route or appropriate Google authentication mechanism.
+
+Use environment variables for secrets.
+
+Create clear setup instructions explaining:
+
+1. How to create a Google Cloud project
+2. How to enable Google Drive API
+3. How to configure authentication
+4. How to connect the Drive folder
+5. How to configure environment variables
+6. How to deploy the website
+
+### Admin/Management
+
+I do not need a separate photo-upload system.
+
+My workflow should remain:
+
+**Take photos → Upload photos to Google Drive → Website automatically displays them.**
+
+If an admin dashboard is included, use it only for:
+
+* Refreshing/syncing Drive
+* Viewing statistics
+* Managing website settings
+* Managing featured albums
+
+Do not create another photo-storage system.
+
+### Mobile Design
+
+The website must work extremely well on mobile phones because many students and parents will access it from mobile devices.
+
+Use:
+
+* 2-column gallery on phones
+* 3–4 columns on tablets
+* 4–6 columns on desktop
+* Touch-friendly controls
+* Fast loading
+* Responsive navigation
+
+### Header
+
+Create a professional header with:
+
+**G-Arts**
+
+Navigation:
+
+Home
+Photos
+Albums
+Events
+About
+
+Add a button:
+
+**View Gallery**
+
+### Footer
+
+Include:
+
+**G-Arts — Swaminarayan Gurukul**
+
+"Preserving memories, celebrating moments."
+
+Include:
+
+* Gallery
+* Albums
+* Events
+* Contact
+* Copyright
+
+### Performance
+
+Optimize the website for:
+
+* Fast loading
+* Lazy loading
+* Image optimization
+* Caching
+* Pagination/infinite scrolling
+* Mobile performance
+* SEO
+
+Do not load thousands of full-resolution images at once.
+
+### Technical Requirements
+
+Build the website using a modern production-ready stack.
+
+Preferred:
+
+* React / Next.js
+* TypeScript
+* Tailwind CSS
+* Google Drive API
+* Secure server-side API routes
+* Responsive design
+
+Write clean, maintainable, well-organized code.
+
+Use reusable components.
+
+Create proper loading states, empty states, and error messages.
+
+For example:
+
+**Loading photos...**
+
+**No photos found.**
+
+**Unable to load photos. Please try again.**
+
+### Important Final Requirement
+
+The most important functionality is:
+
+**GOOGLE DRIVE → WEBSITE AUTOMATIC PHOTO GALLERY**
+
+I should only need to upload photos to my Google Drive folder. I should NOT need to upload the same photos to the website.
+
+Build the complete working website, not just a visual mockup.
+
+Before finishing, test that the Google Drive integration, gallery, albums, photo viewer, search, filters, responsive layout, and error handling all work correctly.
