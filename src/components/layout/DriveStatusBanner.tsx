@@ -50,12 +50,12 @@ export function DriveStatusBanner() {
       <div className="max-w-[1140px] mx-auto flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center space-x-2">
           {status.isConfigured ? (
-            <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#ffe3e3] text-[#a00000] border border-[#CC0000]/30">
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#d1e7dd] text-[#0f5132] border border-[#a3cfbb]">
               <CheckCircle2 className="w-3 h-3 mr-1" />
               Google Drive Live
             </span>
           ) : (
-            <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#eeece7] text-[#a00000] border border-[#d9d9dd]">
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#fff3cd] text-[#664d03] border border-[#ffec99]">
               <AlertCircle className="w-3 h-3 mr-1" />
               Drive Setup Required
             </span>

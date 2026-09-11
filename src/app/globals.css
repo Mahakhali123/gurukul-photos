@@ -4,16 +4,21 @@
 
 @layer base {
   :root {
-    /* Gurukul classic red + white — no green surfaces */
+    /* Cohere 2026 tokens */
     --cohere-primary: #17171c;
     --cohere-black: #000000;
     --cohere-ink: #212121;
+    --cohere-deep-green: #003c33;
+    --cohere-navy: #071829;
     --cohere-canvas: #ffffff;
     --cohere-stone: #eeece7;
+    --cohere-pale-green: #edfce9;
     --cohere-pale-blue: #f1f5ff;
     --cohere-hairline: #d9d9dd;
     --cohere-muted: #93939f;
     --cohere-slate: #75758a;
+    --cohere-action: #1863dc;
+    --cohere-coral: #ff7759;
     --gurukul-maroon: #cc0000;
     --gurukul-maroon-dark: #a00000;
   }
@@ -49,13 +54,13 @@
     text-transform: uppercase;
   }
 
-  /* Cohere primary pill CTA — Gurukul classic red */
+  /* Cohere primary pill CTA */
   .cohere-btn-primary {
-    background: #cc0000;
+    background: #17171c;
     color: #fff;
     border-radius: 32px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.5;
     padding: 12px 24px;
     display: inline-flex;
@@ -65,7 +70,7 @@
     transition: background 0.2s ease, transform 0.2s ease;
   }
   .cohere-btn-primary:hover {
-    background: #a00000;
+    background: #000;
   }
   .cohere-btn-maroon {
     background: #cc0000;
@@ -86,17 +91,16 @@
   .cohere-btn-secondary {
     font-size: 15px;
     font-weight: 500;
-    color: #cc0000;
+    color: #212121;
     text-decoration: underline;
     text-underline-offset: 4px;
-    text-decoration-color: #ffc9c9;
+    text-decoration-color: #d9d9dd;
     min-height: 44px;
     display: inline-flex;
     align-items: center;
   }
   .cohere-btn-secondary:hover {
-    color: #a00000;
-    text-decoration-color: #cc0000;
+    text-decoration-color: #212121;
   }
   .cohere-pill-outline {
     border: 1px solid #17171c;
@@ -120,21 +124,37 @@
     border-radius: 8px;
     padding: 32px;
   }
+  .cohere-dark-band {
+    background: #003c33;
+    color: #fff;
+    border-radius: 22px;
+  }
   .cohere-dark-navy {
-    background: #17171c;
+    background: #071829;
     color: #fff;
   }
 }
 
-/* ---------- classic header chrome (red / white) ---------- */
+/* ---------- gurukul.org chrome ---------- */
+.gurukul-announcement {
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  min-height: 36px;
+}
+.gurukul-topbar {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 13px;
+}
 
-/* Logo clipped flush to the left margin (classic header).
-   Container keeps right padding but zero left padding on desktop;
-   logo stays enlarged (52/64/88px tall). */
+/* Main header — logo clipped flush to the margin like gurukul.org.
+   The container keeps right padding but zero left padding on desktop,
+   and the logo anchor pulls slightly negative so the mark touches the
+   margin edge. Logo is enlarged (56–72px tall vs previous 40px). */
 .gurukul-header {
   background: #ffffff;
   border-bottom: 1px solid #d9d9dd;
-  overflow: visible;
 }
 .gurukul-header-container {
   max-width: 1200px;
@@ -169,12 +189,12 @@
 }
 @media (min-width: 640px) {
   .gurukul-logo-img {
-    height: 64px;
+    height: 60px;
   }
 }
 @media (min-width: 1024px) {
   .gurukul-logo-img {
-    height: 88px;
+    height: 72px;
   }
 }
 

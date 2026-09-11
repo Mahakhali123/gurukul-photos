@@ -12,7 +12,7 @@ export function Footer() {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 pt-14 pb-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-10 border-b border-white/10">
           <div className="max-w-xl">
-            <p className="text-[13px] font-medium tracking-[0.08em] uppercase text-[#ff6b61]">
+            <p className="text-[13px] font-medium tracking-[0.08em] uppercase text-[#ff7759]">
               G-Arts moves fast
             </p>
             <h2 className="cohere-display text-[32px] sm:text-[48px] mt-3">
@@ -34,7 +34,7 @@ export function Footer() {
               Get album drops by email
             </label>
             {subscribed ? (
-              <p className="mt-2 rounded-[32px] border border-[#CC0000]/50 bg-[#CC0000]/15 px-5 py-3 text-[14px] text-white">
+              <p className="mt-2 rounded-[32px] border border-[#ff7759]/40 bg-[#ff7759]/10 px-5 py-3 text-[14px] text-white">
                 You&apos;re on the list — Jay Swaminarayan!
               </p>
             ) : (
@@ -51,7 +51,7 @@ export function Footer() {
               <button
                 type="submit"
                 aria-label="Subscribe"
-                className="w-11 h-11 rounded-full bg-white text-[#17171c] flex items-center justify-center font-bold hover:bg-[#CC0000] hover:text-white transition"
+                className="w-11 h-11 rounded-full bg-white text-[#17171c] flex items-center justify-center font-bold hover:bg-[#ff7759] hover:text-[#17171c] transition"
               >
                 →
               </button>
@@ -131,7 +131,7 @@ export function Footer() {
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-2 text-[12px] text-[#75758a]">
           <p>
             Shree Swaminarayan Gurukul, Bangalore ·{' '}
-            <a href="mailto:nishanth@nomin.com" className="text-white hover:text-[#ff6b61]">nishanth@nomin.com</a>
+            <a href="mailto:nishanth@nomin.com" className="text-white hover:text-[#ff7759]">nishanth@nomin.com</a>
           </p>
           <p>Official Student Photo Archive · G-Arts Gallery</p>
         </div>

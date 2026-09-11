@@ -139,9 +139,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       onClose();
                       router.push(`/albums/${album.id}`);
                     }}
-                    className="flex items-center space-x-3 p-2.5 rounded-xl border border-slate-100 bg-slate-50 hover:bg-[#CC0000]/5 hover:border-[#CC0000]/30 cursor-pointer transition"
+                    className="flex items-center space-x-3 p-2.5 rounded-xl border border-slate-100 bg-slate-50 hover:bg-orange-50/60 hover:border-orange-200 cursor-pointer transition"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-[#ffe3e3] text-[#a00000] flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-lg bg-orange-100 text-gurukul-saffron-600 flex items-center justify-center shrink-0">
                       <Folder className="w-5 h-5" />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -168,7 +168,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       onClose();
                       router.push(`/photos?search=${encodeURIComponent(photo.name)}`);
                     }}
-                    className="group cursor-pointer rounded-xl overflow-hidden border border-slate-100 bg-slate-50 hover:border-[#CC0000]/40 transition"
+                    className="group cursor-pointer rounded-xl overflow-hidden border border-slate-100 bg-slate-50 hover:border-orange-300 transition"
                   >
                     <div className="aspect-[4/3] bg-slate-200 relative overflow-hidden flex items-center justify-center">
                       {photo.mediaType === 'audio' ? (

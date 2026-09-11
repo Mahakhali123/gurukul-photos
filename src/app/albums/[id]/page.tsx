@@ -105,11 +105,11 @@ export default function SingleAlbumPage() {
   return (
     <div className="space-y-10 pb-16">
       
-      {/* Album Hero Header — classic black band */}
-      <div className="relative bg-[#17171c] text-white py-12 sm:py-16 overflow-hidden">
+      {/* Album Hero Header — Cohere dark band */}
+      <div className="relative bg-[#071829] text-white py-12 sm:py-16 overflow-hidden">
         
-        {/* Background artwork glow — classic red */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#CC0000]/25 rounded-full blur-3xl pointer-events-none" />
+        {/* Background artwork glow */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#003c33] rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative space-y-6">
           
@@ -119,17 +119,17 @@ export default function SingleAlbumPage() {
             <span>/</span>
             <Link href="/albums" className="hover:text-white transition">Albums</Link>
             <span>/</span>
-            <span className="text-white/80 font-medium truncate max-w-xs" title={displayAlbumName}>{displayAlbumName}</span>
+            <span className="text-amber-300 font-medium truncate max-w-xs" title={displayAlbumName}>{displayAlbumName}</span>
           </nav>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
               <div className="flex items-center space-x-3">
-                <span className="inline-flex items-center text-[11px] uppercase font-medium tracking-[0.08em] px-3 py-1 rounded-full bg-[#CC0000] text-white">
+                <span className="inline-flex items-center text-[11px] uppercase font-medium tracking-[0.08em] px-3 py-1 rounded-full bg-[#ff7759] text-[#17171c]">
                   {album.category}
                 </span>
                 <span className="flex items-center text-xs text-slate-300 font-medium">
-                  <Calendar className="w-3.5 h-3.5 mr-1 text-[#ff8a80]" />
+                  <Calendar className="w-3.5 h-3.5 mr-1 text-[#ffad9b]" />
                   {new Date(album.date || album.createdTime).toLocaleDateString('en-US', {
                     month: 'long',
                     day: 'numeric',
@@ -153,7 +153,7 @@ export default function SingleAlbumPage() {
                 onClick={handleShare}
                 className="inline-flex items-center space-x-2 px-5 py-3 rounded-[32px] bg-white/10 hover:bg-white/20 text-white text-[14px] font-medium backdrop-blur-sm border border-white/20 transition"
               >
-                {copied ? <Check className="w-4 h-4 text-white" /> : <Share2 className="w-4 h-4" />}
+                {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Share2 className="w-4 h-4" />}
                 <span>{copied ? 'Album Link Copied!' : 'Share Album'}</span>
               </button>
 
@@ -170,7 +170,7 @@ export default function SingleAlbumPage() {
 
           {/* Photo Count Pill */}
           <div className="pt-2 flex items-center space-x-2 text-[13px] text-white/70">
-            <ImageIcon className="w-4 h-4 text-[#ff8a80]" />
+            <ImageIcon className="w-4 h-4 text-[#ffad9b]" />
             <span className="font-semibold">
               {photos.filter((p) => p.mediaType !== 'audio').length} Photos & Videos • {photos.filter((p) => p.mediaType === 'audio').length} Audios • {photos.length} total
             </span>
@@ -183,7 +183,7 @@ export default function SingleAlbumPage() {
       {/* Subfolders inside this album (e.g., Dashavatar Assembly separator folders) */}
       {subAlbums.length > 0 && (
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <div className="flex items-center space-x-2 text-[#CC0000] cohere-mono-label border-b border-[#d9d9dd] pb-3">
+          <div className="flex items-center space-x-2 text-[#ff7759] cohere-mono-label border-b border-[#d9d9dd] pb-3">
             <FolderOpen className="w-4 h-4" />
             <span>Folders inside {displayAlbumName} ({subAlbums.length})</span>
           </div>

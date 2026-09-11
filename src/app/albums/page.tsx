@@ -93,7 +93,7 @@ function AlbumsContent() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search albums..."
-                className="w-full pl-10 pr-10 py-3 bg-white border border-[#d9d9dd] rounded-[8px] text-[14px] focus:outline-none focus:border-[#CC0000] focus:ring-2 focus:ring-[#CC0000]/15"
+                className="w-full pl-10 pr-10 py-3 bg-white border border-[#d9d9dd] rounded-[8px] text-[14px] focus:outline-none focus:border-[#9b60aa]"
               />
               {searchQuery && (
                 <button
@@ -119,8 +119,8 @@ function AlbumsContent() {
                   onClick={() => setSelectedCategory(cat.value)}
                   className={`px-4 py-2 rounded-[8px] text-[14px] whitespace-nowrap transition-all border ${
                     isActive
-                      ? 'bg-[#CC0000] border-[#CC0000] text-white font-medium shadow-sm'
-                      : 'bg-transparent border-[#CC0000]/40 text-[#CC0000] hover:bg-[#CC0000]/10'
+                      ? 'bg-[#ff7759] border-[#ff7759] text-[#17171c] font-medium'
+                      : 'bg-transparent border-[#ffad9b]/60 text-[#ff7759] hover:bg-[#ff7759]/10'
                   }`}
                 >
                   {cat.label}
