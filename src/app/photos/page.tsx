@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Image as ImageIcon, Cloud, Filter } from 'lucide-react';
 import { DriveFile, Album, PhotoCategory } from '@/types';
 import { GalleryFilterBar } from '@/components/gallery/GalleryFilterBar';
 import { PhotoGrid } from '@/components/gallery/PhotoGrid';
@@ -31,7 +30,6 @@ function PhotosGalleryContent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Filter state
   const initialCategory = (searchParams.get('category') as PhotoCategory) || 'all';
   const initialAlbumId = searchParams.get('albumId') || 'all';
   const initialSearch = searchParams.get('search') || '';
@@ -58,8 +56,6 @@ function PhotosGalleryContent() {
   const loadData = async () => {
     setLoading(true);
     setError(null);
-    // Vercel cold starts can take a while on first crawl — allow up to 55s
-    // (matches maxDuration=60) instead of the browser's default hang.
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 55000);
     try {
@@ -152,49 +148,45 @@ function PhotosGalleryContent() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
-      
-      {/* Page Header */}
-      <div className="space-y-2">
-        <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-gurukul-saffron-600">
-          <Cloud className="w-4 h-4" />
-          <span>Gallery</span>
-        </div>
-        <h1 className="font-display font-black text-3xl sm:text-4xl text-gurukul-navy-950 tracking-tight">
-          Student Photo, Video &amp; Audio Gallery
+    <div className="bg-white">
+      {/* Editorial page hero — one oversized headline, then restrained UI copy */}
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-6">
+        <p className="cohere-mono-label text-[#93939f]">Gallery</p>
+        <h1 className="cohere-display text-[40px] sm:text-[72px] text-[#17171c] mt-3">
+          Photos, films &amp; bhajans.
         </h1>
-        <p className="text-slate-600 text-sm sm:text-base max-w-3xl">
-          Browse student photos, videos and audios/music from Gurukul events. Click any photo to open the viewer, play videos inline, or tap an audio to listen — or download directly to your computer.
+        <p className="mt-4 text-[16px] sm:text-[18px] text-[#616161] max-w-3xl leading-[1.5]">
+          Browse student photos, videos and audios from Gurukul events. Open any
+          item to view, play inline, or download the original file.
         </p>
       </div>
 
-      {/* Filter & Search Bar */}
-      <GalleryFilterBar
-        categories={CATEGORIES}
-        activeCategory={selectedCategory}
-        onSelectCategory={setSelectedCategory}
-        mediaTypeFilter={mediaTypeFilter}
-        onSelectMediaType={setMediaTypeFilter}
-        albums={albums}
-        selectedAlbumId={selectedAlbumId}
-        onSelectAlbum={setSelectedAlbumId}
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-        sortBy={sortBy}
-        onSortChange={setSortBy}
-        onResetFilters={handleResetFilters}
-        totalPhotosCount={filteredPhotos.length}
-      />
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 pb-16 space-y-6">
+        <GalleryFilterBar
+          categories={CATEGORIES}
+          activeCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+          mediaTypeFilter={mediaTypeFilter}
+          onSelectMediaType={setMediaTypeFilter}
+          albums={albums}
+          selectedAlbumId={selectedAlbumId}
+          onSelectAlbum={setSelectedAlbumId}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
+          onResetFilters={handleResetFilters}
+          totalPhotosCount={filteredPhotos.length}
+        />
 
-      {/* Main Gallery Area */}
-      {loading ? (
-        <LoadingSpinner label="Loading gallery..." />
-      ) : error ? (
-        <ErrorMessage message={error} onRetry={loadData} />
-      ) : (
-        <PhotoGrid photos={filteredPhotos} onResetFilters={handleResetFilters} />
-      )}
-
+        {loading ? (
+          <LoadingSpinner label="Loading gallery..." />
+        ) : error ? (
+          <ErrorMessage message={error} onRetry={loadData} />
+        ) : (
+          <PhotoGrid photos={filteredPhotos} onResetFilters={handleResetFilters} />
+        )}
+      </div>
     </div>
   );
 }

@@ -1,18 +1,25 @@
 import type { Metadata, Viewport } from 'next';
-import { Outfit, Plus_Jakarta_Sans } from 'next/font/google';
+import { Inter, Space_Grotesk, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 
-const outfit = Outfit({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-outfit',
+  variable: '--font-inter',
   display: 'swap',
 });
 
-const plusJakarta = Plus_Jakarta_Sans({
+const display = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-mono',
   display: 'swap',
 });
 
@@ -21,12 +28,13 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: 'cover',
-  themeColor: '#CC0000',
+  themeColor: '#000000',
 };
 
 export const metadata: Metadata = {
   title: 'G-Arts Student Photo Gallery | Swaminarayan Gurukul',
-  description: 'Capturing and preserving memorable moments of students at Swaminarayan Gurukul. Official student photography gallery curated for Gurukul.',
+  description:
+    'Official student photography archive of Shree Swaminarayan Gurukul International School — Vidya, Sadvidya, Brahmavidya. Curated by the G-Arts media wing.',
   keywords: [
     'Swaminarayan Gurukul',
     'G-Arts',
@@ -35,12 +43,13 @@ export const metadata: Metadata = {
     'Gurukul Events',
     'Annual Day',
     'Sports Meet',
-    'Cultural Fest'
+    'Cultural Fest',
   ],
   authors: [{ name: 'G-Arts Media Wing, Swaminarayan Gurukul' }],
   openGraph: {
     title: 'G-Arts Student Photo Gallery | Swaminarayan Gurukul',
-    description: 'Capturing and preserving memorable moments of students at Swaminarayan Gurukul.',
+    description:
+      'Capturing and preserving memorable moments of students at Swaminarayan Gurukul.',
     type: 'website',
     locale: 'en_US',
     siteName: 'G-Arts Gurukul Gallery',
@@ -53,12 +62,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${plusJakarta.variable}`}>
-      <body className="min-h-screen flex flex-col antialiased bg-white text-[#212529] font-sans selection:bg-[#CC0000] selection:text-white">
+    <html lang="en" className={`${inter.variable} ${display.variable} ${mono.variable}`}>
+      <body className="min-h-screen flex flex-col antialiased bg-white text-[#212121] font-sans selection:bg-[#17171c] selection:text-white">
         <Header />
-        <main className="flex-1 bg-white">
-          {children}
-        </main>
+        <main className="flex-1 bg-white">{children}</main>
         <Footer />
       </body>
     </html>

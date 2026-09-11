@@ -15,8 +15,8 @@ export function LoadingSpinner({ label = 'Loading photos...', size = 'md' }: Loa
 
   return (
     <div className="flex flex-col items-center justify-center py-16 px-4 space-y-3">
-      <Loader2 className={`${sizeClasses[size]} animate-spin text-gurukul-saffron-500`} />
-      {label && <p className="text-sm font-medium text-slate-600 animate-pulse">{label}</p>}
+      <Loader2 className={`${sizeClasses[size]} animate-spin text-[#17171c]`} />
+      {label && <p className="text-[14px] text-[#616161] animate-pulse">{label}</p>}
     </div>
   );
 }

@@ -79,11 +79,11 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/60 backdrop-blur-sm animate-fade-in">
       
       {/* Modal Dialog */}
-      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[80vh]">
+      <div className="w-full max-w-2xl bg-white rounded-[22px] shadow-2xl border border-[#d9d9dd] overflow-hidden flex flex-col max-h-[80vh]">
         
         {/* Top Search Input */}
-        <div className="flex items-center px-4 py-3.5 border-b border-slate-200">
-          <Search className="w-5 h-5 text-gurukul-saffron-500 mr-3 shrink-0" />
+        <div className="flex items-center px-4 py-3.5 border-b border-[#d9d9dd]">
+          <Search className="w-5 h-5 text-[#17171c] mr-3 shrink-0" />
           <input
             type="text"
             value={query}

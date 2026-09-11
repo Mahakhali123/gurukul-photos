@@ -9,6 +9,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // ---- Cohere 2026 design tokens (DESIGN-cohere.md) ----
+        cohere: {
+          primary: "#17171c",
+          black: "#000000",
+          ink: "#212121",
+          deepGreen: "#003c33",
+          darkNavy: "#071829",
+          canvas: "#ffffff",
+          softStone: "#eeece7",
+          paleGreen: "#edfce9",
+          paleBlue: "#f1f5ff",
+          hairline: "#d9d9dd",
+          borderLight: "#e5e7eb",
+          cardBorder: "#f2f2f2",
+          muted: "#93939f",
+          slate: "#75758a",
+          bodyMuted: "#616161",
+          actionBlue: "#1863dc",
+          focusBlue: "#4c6ee6",
+          coral: "#ff7759",
+          coralSoft: "#ffad9b",
+        },
         // gurukul.org palette — exact from events page
         gurukulOrg: {
           maroon: "#CC0000",
@@ -70,8 +92,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "-apple-system", "BlinkMacSystemFont", "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
-        display: ["var(--font-outfit)", "-apple-system", "BlinkMacSystemFont", "SF Pro Display", "Helvetica Neue", "sans-serif"],
+        sans: ["var(--font-inter)", "Inter", "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Arial", "sans-serif"],
+        display: ["var(--font-display)", "Space Grotesk", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       boxShadow: {
         'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.04)',
@@ -82,6 +105,10 @@ const config: Config = {
       borderRadius: {
         'apple': '18px',
         'apple-lg': '28px',
+        'cohere-sm': '8px',
+        'cohere-md': '16px',
+        'cohere-lg': '22px',
+        'cohere-xl': '30px',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

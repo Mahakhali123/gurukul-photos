@@ -105,11 +105,11 @@ export default function SingleAlbumPage() {
   return (
     <div className="space-y-10 pb-16">
       
-      {/* Album Hero Header */}
-      <div className="relative bg-gradient-to-b from-gurukul-navy-950 to-gurukul-navy-900 text-white py-12 sm:py-16 overflow-hidden">
+      {/* Album Hero Header — Cohere dark band */}
+      <div className="relative bg-[#071829] text-white py-12 sm:py-16 overflow-hidden">
         
         {/* Background artwork glow */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#003c33] rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative space-y-6">
           
@@ -125,11 +125,11 @@ export default function SingleAlbumPage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
               <div className="flex items-center space-x-3">
-                <span className="inline-flex items-center text-[11px] uppercase font-bold tracking-wider px-3 py-1 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/30">
+                <span className="inline-flex items-center text-[11px] uppercase font-medium tracking-[0.08em] px-3 py-1 rounded-full bg-[#ff7759] text-[#17171c]">
                   {album.category}
                 </span>
                 <span className="flex items-center text-xs text-slate-300 font-medium">
-                  <Calendar className="w-3.5 h-3.5 mr-1 text-gurukul-saffron-400" />
+                  <Calendar className="w-3.5 h-3.5 mr-1 text-[#ffad9b]" />
                   {new Date(album.date || album.createdTime).toLocaleDateString('en-US', {
                     month: 'long',
                     day: 'numeric',
@@ -138,7 +138,7 @@ export default function SingleAlbumPage() {
                 </span>
               </div>
 
-              <h1 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight" title={displayAlbumName}>
+              <h1 className="cohere-display text-[40px] sm:text-[48px] lg:text-[60px] text-white" title={displayAlbumName}>
                 {displayAlbumName}
               </h1>
 
@@ -151,7 +151,7 @@ export default function SingleAlbumPage() {
             <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={handleShare}
-                className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold backdrop-blur-sm border border-white/20 transition"
+                className="inline-flex items-center space-x-2 px-5 py-3 rounded-[32px] bg-white/10 hover:bg-white/20 text-white text-[14px] font-medium backdrop-blur-sm border border-white/20 transition"
               >
                 {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Share2 className="w-4 h-4" />}
                 <span>{copied ? 'Album Link Copied!' : 'Share Album'}</span>
@@ -159,7 +159,7 @@ export default function SingleAlbumPage() {
 
               <Link
                 href="/albums"
-                className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-white text-gurukul-navy-950 hover:bg-slate-100 text-xs font-bold transition shadow-soft"
+                className="inline-flex items-center space-x-2 px-5 py-3 rounded-[32px] bg-white text-[#17171c] hover:bg-[#eeece7] text-[14px] font-medium transition"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>All Albums</span>
@@ -169,8 +169,8 @@ export default function SingleAlbumPage() {
           </div>
 
           {/* Photo Count Pill */}
-          <div className="pt-2 flex items-center space-x-2 text-xs text-amber-200">
-            <ImageIcon className="w-4 h-4 text-gurukul-saffron-400" />
+          <div className="pt-2 flex items-center space-x-2 text-[13px] text-white/70">
+            <ImageIcon className="w-4 h-4 text-[#ffad9b]" />
             <span className="font-semibold">
               {photos.filter((p) => p.mediaType !== 'audio').length} Photos & Videos • {photos.filter((p) => p.mediaType === 'audio').length} Audios • {photos.length} total
             </span>
@@ -182,8 +182,8 @@ export default function SingleAlbumPage() {
 
       {/* Subfolders inside this album (e.g., Dashavatar Assembly separator folders) */}
       {subAlbums.length > 0 && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <div className="flex items-center space-x-2 text-gurukul-saffron-600 text-xs font-bold uppercase tracking-wider border-b border-slate-200 pb-3">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+          <div className="flex items-center space-x-2 text-[#ff7759] cohere-mono-label border-b border-[#d9d9dd] pb-3">
             <FolderOpen className="w-4 h-4" />
             <span>Folders inside {displayAlbumName} ({subAlbums.length})</span>
           </div>
@@ -195,9 +195,9 @@ export default function SingleAlbumPage() {
       )}
 
       {/* Photos Grid Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-          <h2 className="font-bold text-lg text-gurukul-navy-950">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="flex items-center justify-between border-b border-[#d9d9dd] pb-3">
+          <h2 className="font-medium text-[24px] text-[#212121]">
             {subAlbums.length > 0 ? `All Media in ${displayAlbumName} (including subfolders)` : `Photos, Videos & Audios in ${displayAlbumName}`}
           </h2>
           <span className="text-xs text-slate-500">Click any photo to view, play video/audio, or download</span>

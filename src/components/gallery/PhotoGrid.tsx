@@ -49,11 +49,11 @@ export function PhotoGrid({ photos, onResetFilters }: PhotoGridProps) {
         <div className="flex flex-col items-center gap-2 pt-6 pb-2">
           <button
             onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-            className="w-full sm:w-auto inline-flex items-center justify-center rounded-lg bg-[#CC0000] hover:bg-[#a00000] text-white text-[15px] font-semibold px-8 py-3 min-h-[48px]"
+            className="w-full sm:w-auto inline-flex items-center justify-center rounded-[32px] bg-[#17171c] hover:bg-black text-white text-[14px] font-medium px-8 py-3 min-h-[48px]"
           >
             Load more ({photos.length - visibleCount} remaining)
           </button>
-          <p className="text-xs text-slate-500">
+          <p className="text-[12px] text-[#93939f]">
             Showing {visibleCount} of {photos.length}
           </p>
         </div>
