@@ -119,8 +119,8 @@ function AlbumsContent() {
                   onClick={() => setSelectedCategory(cat.value)}
                   className={`px-4 py-2 rounded-[8px] text-[14px] whitespace-nowrap transition-all border ${
                     isActive
-                      ? 'bg-[#ff7759] border-[#ff7759] text-[#17171c] font-medium'
-                      : 'bg-transparent border-[#ffad9b]/60 text-[#ff7759] hover:bg-[#ff7759]/10'
+                      ? 'bg-[#CC0000] border-[#CC0000] text-white font-medium shadow-sm'
+                      : 'bg-transparent border-[#CC0000]/40 text-[#CC0000] hover:bg-[#CC0000]/10'
                   }`}
                 >
                   {cat.label}

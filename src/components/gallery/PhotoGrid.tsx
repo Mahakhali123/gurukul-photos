@@ -30,8 +30,9 @@ export function PhotoGrid({ photos, onResetFilters }: PhotoGridProps) {
 
   return (
     <>
-      {/* Apple grid: 2 cols mobile, 3 sm, 4 lg - tighter gap on phones */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
+      {/* Pinterest-style masonry: 2 cols mobile, 3 sm, 4 xl — cards carry
+          their own bottom margin + break-inside-avoid for the stagger */}
+      <div className="columns-2 sm:columns-3 xl:columns-4 gap-3 sm:gap-4">
         {visiblePhotos.map((photo) => {
           const fullIndex = photos.indexOf(photo);
           return (

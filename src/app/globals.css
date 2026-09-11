@@ -91,16 +91,17 @@
   .cohere-btn-secondary {
     font-size: 15px;
     font-weight: 500;
-    color: #212121;
+    color: #cc0000;
     text-decoration: underline;
     text-underline-offset: 4px;
-    text-decoration-color: #d9d9dd;
+    text-decoration-color: #ffc9c9;
     min-height: 44px;
     display: inline-flex;
     align-items: center;
   }
   .cohere-btn-secondary:hover {
-    text-decoration-color: #212121;
+    color: #a00000;
+    text-decoration-color: #cc0000;
   }
   .cohere-pill-outline {
     border: 1px solid #17171c;
@@ -151,10 +152,11 @@
 /* Main header — logo clipped flush to the margin like gurukul.org.
    The container keeps right padding but zero left padding on desktop,
    and the logo anchor pulls slightly negative so the mark touches the
-   margin edge. Logo is enlarged (56–72px tall vs previous 40px). */
+   margin edge. */
 .gurukul-header {
   background: #ffffff;
   border-bottom: 1px solid #d9d9dd;
+  overflow: visible;
 }
 .gurukul-header-container {
   max-width: 1200px;
@@ -181,6 +183,24 @@
     margin-left: -8px;
   }
 }
+
+/* Logo clipped OVER the ribbon: on md+ screens the logo wears a white
+   plaque that hangs upward over the top utility ribbon (exact ribbon
+   height offset, so it sits flush with zero clipping in every state —
+   announcement open or dismissed). Enlarged well beyond the old 40px. */
+@media (min-width: 768px) {
+  .gurukul-logo-overlap {
+    position: relative;
+    z-index: 50;
+    margin-top: -36px;
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    padding: 12px 20px 12px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.13);
+  }
+}
 .gurukul-logo-img {
   height: 52px;
   width: auto;
@@ -189,12 +209,12 @@
 }
 @media (min-width: 640px) {
   .gurukul-logo-img {
-    height: 60px;
+    height: 64px;
   }
 }
 @media (min-width: 1024px) {
   .gurukul-logo-img {
-    height: 72px;
+    height: 88px;
   }
 }
 

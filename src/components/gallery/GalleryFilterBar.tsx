@@ -148,7 +148,7 @@ export function GalleryFilterBar({
         </div>
       </div>
 
-      {/* Cohere coral taxonomy chips — oversized hero-level control */}
+      {/* Gurukul-red taxonomy chips — oversized hero-level control */}
       <div className="flex items-center justify-between pt-3 border-t border-[#d9d9dd] overflow-x-auto no-scrollbar gap-2">
         <div className="flex items-center space-x-2 shrink-0 py-1">
           {categories.map((cat) => {
@@ -159,8 +159,8 @@ export function GalleryFilterBar({
                 onClick={() => onSelectCategory(cat.value)}
                 className={`px-4 py-2 min-h-[36px] rounded-[8px] text-[14px] whitespace-nowrap transition-all border ${
                   isActive
-                    ? 'bg-[#ff7759] border-[#ff7759] text-[#17171c] font-medium'
-                    : 'bg-transparent border-[#ffad9b]/60 text-[#ff7759] hover:bg-[#ff7759]/10'
+                    ? 'bg-[#CC0000] border-[#CC0000] text-white font-medium shadow-sm'
+                    : 'bg-transparent border-[#CC0000]/40 text-[#CC0000] hover:bg-[#CC0000]/10'
                 }`}
               >
                 {cat.label}

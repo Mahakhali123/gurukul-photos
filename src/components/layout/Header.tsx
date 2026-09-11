@@ -32,7 +32,7 @@ export function Header() {
   ];
 
   return (
-    <>
+    <div className="gurukul-chrome relative">
       {/* Cohere announcement-bar: black 36px strip */}
       {announcementOpen && (
         <div className="gurukul-announcement flex items-center justify-center px-10 relative">
@@ -85,8 +85,8 @@ export function Header() {
       <header className="gurukul-header sticky top-0 z-40 bg-white">
         <div className="gurukul-header-container">
           <div className="flex items-center justify-between min-h-[76px] lg:min-h-[88px] gap-4">
-            {/* Logo — clipped to margin, enlarged */}
-            <Link href="/" className="gurukul-logo-anchor" aria-label="G-Arts Gurukul Gallery home">
+            {/* Logo — white plaque clipped up over the ribbon, enlarged */}
+            <Link href="/" className="gurukul-logo-anchor gurukul-logo-overlap" aria-label="G-Arts Gurukul Gallery home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={GURUKUL_LOGO}
@@ -217,6 +217,6 @@ export function Header() {
       </header>
 
       <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
-    </>
+    </div>
   );
 }

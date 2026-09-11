@@ -1,13 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Download, Music } from 'lucide-react';
+import { Download, Music, Maximize2, Play } from 'lucide-react';
 import { DriveFile } from '@/types';
 
 interface PhotoCardProps {
   photo: DriveFile;
   index: number;
   onClick: (index: number) => void;
+}
+
+function cleanName(name: string) {
+  return name.replace(/\.[^/.]+$/, '').replace(/_/g, ' ');
 }
 
 export function PhotoCard({ photo, index, onClick }: PhotoCardProps) {
@@ -17,6 +21,19 @@ export function PhotoCard({ photo, index, onClick }: PhotoCardProps) {
 
   const isVideo = photo.mediaType === 'video';
   const isAudio = photo.mediaType === 'audio';
+  const isImage = !isVideo && !isAudio;
+
+  // Pinterest-style natural heights: real photo ratios drive the masonry rhythm.
+  const rawRatio =
+    photo.aspectRatio && photo.aspectRatio > 0
+      ? photo.aspectRatio
+      : photo.width && photo.height
+        ? photo.width / photo.height
+        : undefined;
+  const imageRatio =
+    rawRatio && isFinite(rawRatio)
+      ? Math.min(1.9, Math.max(0.62, rawRatio))
+      : 4 / 3;
 
   const handleImgError = () => {
     if (fallbackStep === 0) {
@@ -47,19 +64,39 @@ export function PhotoCard({ photo, index, onClick }: PhotoCardProps) {
   return (
     <div
       onClick={() => onClick(index)}
-      className="group cursor-pointer rounded-[8px] overflow-hidden bg-white border border-[#f2f2f2] hover:border-[#d9d9dd] transition-all duration-200"
+      className="group cursor-pointer break-inside-avoid mb-3 sm:mb-4 rounded-[16px] overflow-hidden bg-white border border-[#f2f2f2] hover:border-[#d9d9dd] hover:shadow-[0_16px_40px_rgba(0,0,0,0.14)] hover:-translate-y-1 transition-all duration-300"
     >
-      <div className="relative w-full aspect-[1] bg-[#eeece7] overflow-hidden">
+      <div
+        className="relative w-full overflow-hidden bg-[#eeece7]"
+        style={
+          isImage
+            ? { aspectRatio: `${imageRatio}` }
+            : isVideo
+              ? { aspectRatio: '4 / 3' }
+              : { aspectRatio: '1 / 1' }
+        }
+      >
         {isAudio ? (
-          <div className="w-full h-full flex flex-col items-center justify-center bg-[#17171c] text-white p-3">
-            <span className="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-              <Music className="w-6 h-6 text-white" />
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#17171c] text-white p-4 overflow-hidden">
+            <span
+              className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#CC0000]/30 blur-2xl pointer-events-none"
+              aria-hidden="true"
+            />
+            <span className="w-14 h-14 rounded-full bg-[#CC0000] flex items-center justify-center shadow-lg">
+              <Music className="w-7 h-7 text-white" />
             </span>
-            <span className="mt-2 max-w-full truncate text-[12px] font-medium px-2" title={photo.name}>
-              {photo.name.replace(/\.[^/.]+$/, '').replace(/_/g, ' ')}
+            <span className="mt-3 max-w-full truncate text-[13px] font-medium px-2" title={photo.name}>
+              {cleanName(photo.name)}
             </span>
-            <span className="cohere-mono-label !text-[10px] text-white/50">
+            <span className="cohere-mono-label !text-[10px] text-white/50 mt-1">
               {(photo.name.split('.').pop() || 'audio').toUpperCase()} · Audio
+            </span>
+            <span className="mt-3 flex items-end gap-1 h-5" aria-hidden="true">
+              <span className="w-1 rounded bg-[#CC0000] animate-pulse" style={{ height: '10px' }} />
+              <span className="w-1 rounded bg-white/70 animate-pulse" style={{ height: '18px', animationDelay: '0.15s' }} />
+              <span className="w-1 rounded bg-[#CC0000] animate-pulse" style={{ height: '12px', animationDelay: '0.3s' }} />
+              <span className="w-1 rounded bg-white/70 animate-pulse" style={{ height: '20px', animationDelay: '0.45s' }} />
+              <span className="w-1 rounded bg-[#CC0000] animate-pulse" style={{ height: '8px', animationDelay: '0.6s' }} />
             </span>
           </div>
         ) : (
@@ -72,50 +109,62 @@ export function PhotoCard({ photo, index, onClick }: PhotoCardProps) {
           decoding="async"
           referrerPolicy="no-referrer"
           onError={handleImgError}
-          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-700 ease-out"
         />
         )}
 
-        <span className="absolute top-2.5 left-2.5 text-[10px] font-medium tracking-[0.04em] uppercase px-2 py-1 rounded-full bg-white/90 text-[#17171c] backdrop-blur">
-          {photo.category}
-        </span>
-        {isVideo && (
-          <>
-            <span className="absolute top-2.5 right-2.5 text-[10px] font-bold tracking-[0.04em] uppercase px-1.5 py-1 rounded-full bg-black text-white">
-              Video
-            </span>
-            <span className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <span className="w-11 h-11 rounded-full bg-black/60 backdrop-blur flex items-center justify-center border border-white/30">
-                <span className="ml-0.5 w-0 h-0 border-t-[7px] border-t-transparent border-l-[11px] border-l-white border-b-[7px] border-b-transparent" />
-              </span>
-            </span>
-          </>
-        )}
-        {isAudio && (
-          <span className="absolute top-2.5 right-2.5 text-[10px] font-bold tracking-[0.04em] uppercase px-1.5 py-1 rounded-full bg-[#ff7759] text-[#17171c]">
-            Audio
+        {/* Top badges */}
+        {isImage ? (
+          <span className="absolute top-3 left-3 text-[10px] font-medium tracking-[0.06em] uppercase px-2.5 py-1 rounded-full bg-black/55 text-white backdrop-blur opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            {photo.category}
+          </span>
+        ) : (
+          <span className="absolute top-3 left-3 text-[10px] font-bold tracking-[0.06em] uppercase px-2.5 py-1 rounded-full bg-[#CC0000] text-white shadow">
+            {isVideo ? 'Video' : 'Audio'}
           </span>
         )}
 
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 hidden sm:flex items-end justify-between">
-          <p className="text-[12px] font-medium text-white truncate pr-2">
-            {photo.name.replace(/\.[^/.]+$/, '').replace(/_/g, ' ')}
+        {isVideo && (
+          <span className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span className="w-14 h-14 rounded-full bg-black/55 backdrop-blur flex items-center justify-center border border-white/40 group-hover:bg-[#CC0000] group-hover:border-[#CC0000] group-hover:scale-110 transition-all duration-300">
+              <Play className="w-6 h-6 text-white fill-white ml-0.5" />
+            </span>
+          </span>
+        )}
+
+        {/* Hover action bar — Pinterest-style quick actions */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-3 pt-8 hidden sm:flex items-end justify-between gap-2">
+          <p className="text-[13px] font-medium text-white leading-snug line-clamp-2 pr-1">
+            {cleanName(photo.name)}
           </p>
-          <button
-            onClick={handleDownload}
-            className="shrink-0 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-[#17171c] flex items-center justify-center backdrop-blur"
-            aria-label="Download"
-          >
-            <Download className="w-4 h-4" />
-          </button>
+          <span className="flex items-center gap-1.5 shrink-0">
+            <span
+              role="button"
+              tabIndex={0}
+              aria-label="Quick view"
+              className="w-9 h-9 rounded-full bg-white text-[#17171c] flex items-center justify-center hover:bg-[#CC0000] hover:text-white transition"
+            >
+              <Maximize2 className="w-4 h-4" />
+            </span>
+            <button
+              onClick={handleDownload}
+              className="w-9 h-9 rounded-full bg-white text-[#17171c] flex items-center justify-center hover:bg-[#CC0000] hover:text-white transition"
+              aria-label="Download"
+            >
+              <Download className="w-4 h-4" />
+            </button>
+          </span>
         </div>
       </div>
 
-      <div className="px-3 py-2.5">
-        <p className="text-[12px] font-medium leading-4 text-[#212121] truncate" title={photo.name}>
-          {photo.name.replace(/\.[^/.]+$/, '').replace(/_/g, ' ')}
+      {/* Caption — always visible, Pinterest-style title under the pin */}
+      <div className="px-3.5 py-3">
+        <p className="text-[13px] font-medium leading-5 text-[#212121] line-clamp-2" title={photo.name}>
+          {cleanName(photo.name)}
         </p>
-        <p className="text-[12px] leading-4 text-[#93939f] truncate" title={photo.albumName}>{photo.albumName}</p>
+        <p className="mt-0.5 text-[12px] leading-4 text-[#93939f] truncate" title={photo.albumName}>
+          {photo.albumName}
+        </p>
       </div>
     </div>
   );

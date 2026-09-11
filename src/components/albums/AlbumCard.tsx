@@ -73,7 +73,7 @@ export function AlbumCard({ album }: AlbumCardProps) {
           {album.description || 'Collection of memorable moments captured at Gurukul.'}
         </p>
         <div className="mt-3 flex items-center justify-between">
-          <span className="text-[14px] text-[#1863dc] group-hover:underline">View →</span>
+          <span className="text-[14px] font-medium text-[#CC0000] group-hover:underline">View →</span>
           <span className="text-[12px] text-[#93939f]">
             {new Date(album.date || album.createdTime).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
           </span>

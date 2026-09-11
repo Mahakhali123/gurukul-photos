@@ -125,7 +125,7 @@ export default function SingleAlbumPage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
               <div className="flex items-center space-x-3">
-                <span className="inline-flex items-center text-[11px] uppercase font-medium tracking-[0.08em] px-3 py-1 rounded-full bg-[#ff7759] text-[#17171c]">
+                <span className="inline-flex items-center text-[11px] uppercase font-medium tracking-[0.08em] px-3 py-1 rounded-full bg-[#CC0000] text-white">
                   {album.category}
                 </span>
                 <span className="flex items-center text-xs text-slate-300 font-medium">
